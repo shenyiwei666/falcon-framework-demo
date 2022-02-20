@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    active: ${env:local}
+  application:
+    name: falcon-demo
