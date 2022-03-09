@@ -2,12 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-<!--    <parent>-->
-<!--        <groupId>org.springframework.boot</groupId>-->
-<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
-<!--        <version>2.6.1</version>-->
-<!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
-<!--    </parent>-->
+    <packaging>pom</packaging>
 
     <parent>
         <groupId>org.falconframework</groupId>
@@ -16,57 +11,22 @@
     </parent>
 
     <groupId>org.falconframework.demo</groupId>
-    <artifactId>falcon-framework-demo</artifactId>
+    <artifactId>falcon-demo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>falcon-framework-demo</name>
 
-    <properties>
-        <spring.boot.version>2.3.1.RELEASE</spring.boot.version>
-        <spring.cloud.version>Hoxton.SR6</spring.cloud.version>
-        <junit.version>4.12</junit.version>
-    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.falconframework.demo</groupId>
+                <artifactId>falcon-common-server</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-    <dependencies>
-
-    </dependencies>
-
-    <build>
-        <finalName>shop-ms-merchant</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.boot.version}</version>
-                <configuration>
-                    <mainClass>org.falconframework.demo.FalconFrameworkDemoApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.2.1</version>
-                <configuration>
-                    <includePom>true</includePom>
-                    <excludeResources>true</excludeResources>
-                    <attach>true</attach>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <modules>
+        <module>falcon-common-server</module>
+        <module>falcon-logging-demo</module>
+    </modules>
 
 </project>

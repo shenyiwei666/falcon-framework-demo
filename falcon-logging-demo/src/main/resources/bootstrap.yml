@@ -1,5 +1,8 @@
+server:
+  port: 9001
+
 spring:
   profiles:
     active: ${env:local}
   application:
-    name: falcon-demo
+    name: falcon-logging-demo

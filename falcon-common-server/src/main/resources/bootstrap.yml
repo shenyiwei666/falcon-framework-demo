@@ -1,0 +1,8 @@
+server:
+  port: 9000
+
+spring:
+  profiles:
+    active: ${env:local}
+  application:
+    name: falcon-common-server
