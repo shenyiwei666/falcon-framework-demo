@@ -5,4 +5,5 @@ spring:
   profiles:
     active: ${env:local}
   application:
-    name: falcon-common-server
+    name: falcon-user
+

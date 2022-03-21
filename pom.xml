@@ -18,14 +18,15 @@
         <dependencies>
             <dependency>
                 <groupId>org.falconframework.demo</groupId>
-                <artifactId>falcon-common-server</artifactId>
-                <version>${project.version}</version>
+                <artifactId>falcon-user-provider</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <modules>
-        <module>falcon-common-server</module>
+        <module>falcon-user</module>
+        <module>falcon-user-provider</module>
         <module>falcon-logging-demo</module>
     </modules>
 

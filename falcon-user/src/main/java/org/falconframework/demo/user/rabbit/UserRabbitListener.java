@@ -1,4 +1,4 @@
-package org.falconframework.demo.common.server.rabbit;
+package org.falconframework.demo.user.rabbit;
 
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
@@ -8,13 +8,6 @@ import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 
-/**
- * 功能说明
- *
- * @author 申益炜
- * @version 1.0.0
- * @date 2022/3/9
- */
 @Slf4j
 @Component
 public class UserRabbitListener {

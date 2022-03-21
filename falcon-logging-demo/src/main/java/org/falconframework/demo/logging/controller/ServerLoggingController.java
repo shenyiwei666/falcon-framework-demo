@@ -1,22 +1,20 @@
 package org.falconframework.demo.logging.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.falconframework.demo.common.server.feign.UserFeign;
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.falconframework.demo.user.provider.dto.UserBean;
+import org.falconframework.demo.user.provider.dubbo.UserProviderService;
+import org.falconframework.demo.user.provider.feign.UserFeign;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * 功能说明
- *
- * @author 申益炜
- * @version 1.0.0
- * @date 2022/3/7
- */
 @Slf4j
 @RequestMapping("/logging")
 @RestController
@@ -28,21 +26,32 @@ public class ServerLoggingController {
     private RestTemplate restTemplate;
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    @DubboReference(url = "dubbo://127.0.0.1:20880")
+    private UserProviderService userProviderService;
+
+    @Value("${logging.level.org.falconframework}")
+    private String level;
 
     @GetMapping("/test")
     public String test() {
-        log.info("feign调用用户查询接口开始");
-        JSONObject feignUserInfo = userFeign.get("1");
-        log.info("feign调用用户查询接口结束：{}", feignUserInfo.toJSONString());
-
         log.info("restTemplate调用用户查询接口开始");
-        JSONObject restUserInfo = restTemplate.getForObject("http://localhost:9000/user/get/1", JSONObject.class);
-        log.info("restTemplate调用用户查询接口结束：{}", restUserInfo.toJSONString());
+        JSONObject restUser = restTemplate.getForObject("http://localhost:9000/user/get/1", JSONObject.class);
+        log.info("restTemplate调用用户查询接口结束：{}", restUser.toJSONString());
 
+        log.info("feign调用用户查询接口开始");
+        UserBean feignUser = userFeign.getUserById(1L);
+        log.info("feign调用用户查询接口结束：{}", JSON.toJSONString(feignUser));
+
+        log.info("dubbo调用用户查询接口开始");
+        UserBean dubboUser = userProviderService.getUserById(1L);
+        log.info("dubbo调用用户查询接口结束：{}", JSON.toJSONString(dubboUser));
 
         String message = "msg-" + System.currentTimeMillis();
         rabbitTemplate.convertAndSend("exchange.direct.faceid", "routing.faceid.lineStatistic_local", message);
         log.info("rabbitMQ发送消息：{}", message);
+
+        log.warn("warn log level={}", level);
+        log.error("error log level={}", level);
 
         return "OK";
     }
