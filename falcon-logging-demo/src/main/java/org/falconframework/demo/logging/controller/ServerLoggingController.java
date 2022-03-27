@@ -43,7 +43,7 @@ public class ServerLoggingController {
         log.info("feign调用用户查询接口结束：{}", JSON.toJSONString(feignUser));
 
         log.info("dubbo调用用户查询接口开始");
-        UserBean dubboUser = userProviderService.getUserById(1L);
+        UserBean dubboUser = userProviderService.getUser(1L);
         log.info("dubbo调用用户查询接口结束：{}", JSON.toJSONString(dubboUser));
 
         String message = "msg-" + System.currentTimeMillis();
@@ -51,7 +51,12 @@ public class ServerLoggingController {
         log.info("rabbitMQ发送消息：{}", message);
 
         log.warn("warn log level={}", level);
-        log.error("error log level={}", level);
+
+        try {
+            Integer.parseInt("abc");
+        } catch (Exception e) {
+            log.error("系统异常", e);
+        }
 
         return "OK";
     }

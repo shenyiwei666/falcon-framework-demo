@@ -15,9 +15,14 @@ public class UserProviderServiceImpl implements UserProviderService {
     private UserService userService;
 
     @Override
-    public UserBean getUserById(Long id) {
-        log.info("dubbo provider getUserById");
+    public UserBean getUser(Long id) {
+        log.info("invoke getUser(Long id)");
         return userService.getUserById(id);
     }
 
+    @Override
+    public UserBean getUser(Long id, String name) {
+        log.info("invoke getUser(Long id, String name)");
+        return userService.getUserById(id);
+    }
 }

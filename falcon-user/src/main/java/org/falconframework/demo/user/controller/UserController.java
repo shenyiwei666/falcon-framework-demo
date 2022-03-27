@@ -17,6 +17,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+//    @IgnoreLogging
     @GetMapping("/get/{userid}")
     public UserBean getUserById(@PathVariable("userid") Long userid) {
         return userService.getUserById(userid);

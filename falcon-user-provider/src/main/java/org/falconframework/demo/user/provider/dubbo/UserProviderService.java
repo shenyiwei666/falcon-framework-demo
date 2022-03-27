@@ -4,6 +4,9 @@ import org.falconframework.demo.user.provider.dto.UserBean;
 
 public interface UserProviderService {
 
-    UserBean getUserById(Long id);
+//    @IgnoreLogging
+    UserBean getUser(Long id);
+
+    UserBean getUser(Long id, String name);
 
 }
