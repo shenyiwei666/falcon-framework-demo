@@ -4,30 +4,92 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
 
+<!--    <parent>-->
+<!--        <groupId>org.falcon</groupId>-->
+<!--        <artifactId>falcon-spring-boot-parent</artifactId>-->
+<!--        <version>1.0.0-SNAPSHOT</version>-->
+<!--    </parent>-->
+
     <parent>
-        <groupId>org.falconframework</groupId>
-        <artifactId>falcon-starter-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.1.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>org.falconframework.demo</groupId>
+    <groupId>org.falcon.demo</groupId>
     <artifactId>falcon-demo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.falconframework.demo</groupId>
-                <artifactId>falcon-user-provider</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <falcon.version>1.0.0-SNAPSHOT</falcon.version>
+        <dubbo.version>2.7.8</dubbo.version>
+        <apollo.version>1.5.1</apollo.version>
+        <hutool.version>5.5.6</hutool.version>
+        <fastjson.version>1.2.72</fastjson.version>
+    </properties>
 
     <modules>
         <module>falcon-user</module>
         <module>falcon-user-provider</module>
         <module>falcon-logging-demo</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.SR6</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.falcon.demo</groupId>
+                <artifactId>falcon-user-provider</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>${apollo.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.falcon</groupId>
+            <artifactId>falcon-logging-spring-boot-starter</artifactId>
+            <version>${falcon.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+        </dependency>
+
+    </dependencies>
 
 </project>

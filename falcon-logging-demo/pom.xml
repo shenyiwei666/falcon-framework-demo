@@ -5,18 +5,18 @@
     <packaging>jar</packaging>
 
     <parent>
-        <groupId>org.falconframework.demo</groupId>
+        <groupId>org.falcon.demo</groupId>
         <artifactId>falcon-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.falconframework.demo</groupId>
+    <groupId>org.falcon.demo</groupId>
     <artifactId>falcon-logging-demo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
-            <groupId>org.falconframework.demo</groupId>
+            <groupId>org.falcon.demo</groupId>
             <artifactId>falcon-user-provider</artifactId>
         </dependency>
         <dependency>
@@ -28,44 +28,5 @@
             <artifactId>apollo-client</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <finalName>falcon-logging-demo</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-                <configuration>
-                    <mainClass>org.falconframework.demo.logging.LoggingDemoApp</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.2.1</version>
-                <configuration>
-                    <includePom>true</includePom>
-                    <excludeResources>true</excludeResources>
-                    <attach>true</attach>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

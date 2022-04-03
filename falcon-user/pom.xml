@@ -5,12 +5,12 @@
     <packaging>jar</packaging>
 
     <parent>
-        <groupId>org.falconframework.demo</groupId>
+        <groupId>org.falcon.demo</groupId>
         <artifactId>falcon-demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.falconframework.demo</groupId>
+    <groupId>org.falcon.demo</groupId>
     <artifactId>falcon-user</artifactId>
 
     <properties>
@@ -20,7 +20,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.falconframework.demo</groupId>
+            <groupId>org.falcon.demo</groupId>
             <artifactId>falcon-user-provider</artifactId>
         </dependency>
         <dependency>
